@@ -2,7 +2,9 @@ package com.example.usersystem.userbackend
 
 import com.example.usersystem.userbackend.domain.User
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/api")
@@ -12,12 +14,20 @@ class UserController {
 
     @PostMapping("/user")
     void saveUser(@RequestBody User user) {
-        service.saveUser(user)
+        if (!service.emailExists(user.email)) {
+            service.saveUser(user)
+        } else {
+            throw new ResponseStatusException(HttpStatus.CONFLICT)
+        }
     }
 
     @DeleteMapping("/user")
     void deleteUser(@RequestBody User user) {
-        service.deleteUser(user)
+        if (service.userExists(user)) {
+            service.deleteUser(user)
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND)
+        }
     }
 
     @GetMapping("/user/all")

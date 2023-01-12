@@ -21,4 +21,7 @@ interface UserRepository extends JpaRepository<User, Integer> {
     @Query("update User set age = :age where user_id = :user_id ")
     void updateAge(@Param("age") Integer age, @Param("user_id") Integer user_id)
 
+    @Query("select count(r) from User r where lower(r.email) like lower(:email)")
+    int emailExists(@Param("email") String email)
+
 }

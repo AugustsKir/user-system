@@ -37,4 +37,12 @@ class UserService {
         repository.updateName(name, user_id)
     }
 
+    boolean emailExists(String email) {
+        return repository.emailExists(email) == 1
+    }
+
+    boolean userExists(User user) {
+        repository.existsById(user.user_id)
+    }
+
 }
