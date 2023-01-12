@@ -35,23 +35,23 @@ class UserController {
         service.findAllUsers()
     }
 
-    @PostMapping("/user/update/name")
-    void updateName(@RequestBody String name, Integer user_id) {
-        service.updateName(name, user_id)
+    @PostMapping("/user/{id}/name")
+    void updateName(@RequestBody String name, @PathVariable Integer id) {
+        service.updateName(name, id)
     }
 
-    @PostMapping("/user/update/password")
-    void updatePassword(@RequestBody String password, Integer user_id) {
-        service.updatePassword(password, user_id)
+    @PostMapping("/user/{id}/password")
+    void updatePassword(@RequestBody String password, @PathVariable Integer id) {
+        service.updatePassword(password, id)
     }
 
-    @PostMapping("/user/update/age")
-    void updateAge(@RequestBody Integer age, Integer user_id) {
-        service.updateAge(age, user_id)
+    @PostMapping("/user/{id}/age")
+    void updateAge(@RequestBody Integer age, @PathVariable Integer id) {
+        service.updateAge(age, id)
     }
 
-    @PostMapping("/user/update/email")
-    void updateEmail(@RequestBody String email, Integer user_id) {
-        service.updateEmail(email, user_id)
+    @PostMapping("/user/{id}/email")
+    void updateEmail(@RequestBody String email, @PathVariable Integer id) {
+        service.updateEmail(email, id)
     }
 }

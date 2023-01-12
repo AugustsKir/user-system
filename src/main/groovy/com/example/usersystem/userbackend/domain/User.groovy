@@ -15,7 +15,8 @@ class User {
     int age
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer user_id
+    @Column(name = "user_id")
+    Integer userID
 
     User(String name, String email, String password, int age) {
         this.name = name

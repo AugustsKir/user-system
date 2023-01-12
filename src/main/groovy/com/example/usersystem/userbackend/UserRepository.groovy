@@ -9,17 +9,17 @@ import org.springframework.stereotype.Repository
 @Repository
 interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query("update User set name = :name where user_id = :user_id ")
-    void updateName(@Param("name") String name, @Param("user_id") Integer user_id)
+    @Query("update User set name = :name where userID = :id ")
+    void updateName(@Param("name") String name, @Param("id") Integer id)
 
-    @Query("update User set email = :email where user_id = :user_id ")
-    void updateEmail(@Param("email") String email, @Param("user_id") Integer user_id)
+    @Query("update User set email = :email where userID = :id ")
+    void updateEmail(@Param("email") String email, @Param("id") Integer id)
 
-    @Query("update User set password = :password where user_id = :user_id ")
-    void updatePassword(@Param("password") String password, @Param("user_id") Integer user_id)
+    @Query("update User set password = :password where userID = :id ")
+    void updatePassword(@Param("password") String password, @Param("id") Integer id)
 
-    @Query("update User set age = :age where user_id = :user_id ")
-    void updateAge(@Param("age") Integer age, @Param("user_id") Integer user_id)
+    @Query("update User set age = :age where userID = :id ")
+    void updateAge(@Param("age") Integer age, @Param("id") Integer id)
 
     @Query("select count(r) from User r where lower(r.email) like lower(:email)")
     int emailExists(@Param("email") String email)

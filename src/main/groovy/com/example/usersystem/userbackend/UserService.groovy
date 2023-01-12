@@ -21,20 +21,20 @@ class UserService {
         repository.findAll()
     }
 
-    void updateEmail(String email, Integer user_id) {
-        repository.updateEmail(email, user_id)
+    void updateEmail(String email, Integer id) {
+        repository.updateEmail(email, id)
     }
 
-    void updatePassword(String password, Integer user_id) {
-        repository.updatePassword(password, user_id)
+    void updatePassword(String password, Integer id) {
+        repository.updatePassword(password, id)
     }
 
-    void updateAge(Integer age, Integer user_id) {
-        repository.updateAge(age, user_id)
+    void updateAge(Integer age, Integer id) {
+        repository.updateAge(age, id)
     }
 
-    void updateName(String name, Integer user_id) {
-        repository.updateName(name, user_id)
+    void updateName(String name, Integer id) {
+        repository.updateName(name, id)
     }
 
     boolean emailExists(String email) {
@@ -42,7 +42,7 @@ class UserService {
     }
 
     boolean userExists(User user) {
-        repository.existsById(user.user_id)
+        repository.existsById(user.userID)
     }
 
 }
