@@ -1,10 +1,6 @@
 package com.example.usersystem.userbackend.domain
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "user_data")
@@ -18,6 +14,7 @@ class User {
     @Column
     int age
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer user_id
 
     User(String name, String email, String password, int age) {
