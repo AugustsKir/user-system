@@ -22,10 +22,10 @@ class UserController {
         }
     }
 
-    @DeleteMapping("/user")
-    void deleteUser(@RequestBody User user) {
-        if (service.userExists(user)) {
-            service.deleteUser(user)
+    @DeleteMapping("/user/{id}")
+    void deleteUser(@PathVariable Integer id ) {
+        if (!service.existsByID(id)) {
+            service.deleteUser(id)
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND)
         }

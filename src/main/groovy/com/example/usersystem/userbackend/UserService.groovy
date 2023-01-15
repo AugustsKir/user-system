@@ -9,12 +9,16 @@ class UserService {
     @Autowired
     UserRepository repository
 
+    void existsByID(Integer id) {
+        repository.existsById(id)
+    }
+
     void saveUser(User user) {
         repository.save(user)
     }
 
-    void deleteUser(User user) {
-        repository.delete(user)
+    void deleteUser(Integer id) {
+       repository.deleteById(id)
     }
 
     List<User> findAllUsers() {
