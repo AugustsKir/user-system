@@ -9,8 +9,8 @@ class UserService {
     @Autowired
     UserRepository repository
 
-    void existsByID(Integer id) {
-        repository.existsById(id)
+    User findByID(Integer id) {
+        repository.findById(id).orElse(null)
     }
 
     void saveUser(User user) {
@@ -18,7 +18,7 @@ class UserService {
     }
 
     void deleteUser(Integer id) {
-       repository.deleteById(id)
+        repository.deleteById(id)
     }
 
     List<User> findAllUsers() {
@@ -45,8 +45,8 @@ class UserService {
         return repository.emailExists(email) == 1
     }
 
-    boolean userExists(User user) {
-        repository.existsById(user.userID)
+    boolean userExists(Integer id) {
+        repository.existsById(id)
     }
 
 }

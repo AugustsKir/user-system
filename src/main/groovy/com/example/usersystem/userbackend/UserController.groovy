@@ -23,8 +23,8 @@ class UserController {
     }
 
     @DeleteMapping("/user/{id}")
-    void deleteUser(@PathVariable Integer id ) {
-        if (!service.existsByID(id)) {
+    void deleteUser(@PathVariable Integer id) {
+        if (service.userExists(id)) {
             service.deleteUser(id)
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND)
@@ -36,23 +36,18 @@ class UserController {
         service.findAllUsers()
     }
 
-    @PostMapping("/user/{id}/name")
-    void updateName(@RequestBody String name, @PathVariable Integer id) {
-        service.updateName(name, id)
+    @PostMapping("/user/update")
+    void updateUser(@RequestBody User user) {
+        if (service.userExists(user.userID)) {
+            service.updateName(user.name, user.userID)
+            service.updateAge(user.age, user.userID)
+            service.updateEmail(user.email, user.userID)
+            service.updatePassword(user.password, user.userID)
+        }
     }
 
-    @PostMapping("/user/{id}/password")
-    void updatePassword(@RequestBody String password, @PathVariable Integer id) {
-        service.updatePassword(password, id)
-    }
-
-    @PostMapping("/user/{id}/age")
-    void updateAge(@RequestBody Integer age, @PathVariable Integer id) {
-        service.updateAge(age, id)
-    }
-
-    @PostMapping("/user/{id}/email")
-    void updateEmail(@RequestBody String email, @PathVariable Integer id) {
-        service.updateEmail(email, id)
+    @GetMapping("/user/{id}")
+    User findByID(@PathVariable Integer id) {
+        service.findByID(id)
     }
 }
